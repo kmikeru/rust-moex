@@ -28,8 +28,12 @@ struct Candle {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("My Test Program")
         .version("0.1.0")
-        .author("Hackerman Jones <hckrmnjones@hack.gov>")
-        .about("Teaches argument parsing")
+        .about("
+        Download and save to sqlite database:
+        cargo run --release -- -s VTBX,VTBB,VTBE,VTBA,VTBG,FXWO -i 24 -d 2020-01-01 -a d
+        Show:
+        cargo run --release -- -s VTBX,VTBB,VTBE,VTBA,VTBG,FXWO -i 24 -d 2020-01-01 -a s
+        ")
         .arg(Arg::with_name("secname")
                  .short("s")
                  .long("secname")
