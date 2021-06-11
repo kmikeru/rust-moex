@@ -3,6 +3,8 @@ name = "moex"
 version = "0.1.0"
 authors = ["mike <kmikeru@mail.ru>"]
 edition = "2018"
+#links = "libta_lib"
+#build = "build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -16,3 +18,4 @@ rusqlite = { version = "*", features = ["chrono", "serde_json"] }
 clap = "*"
 criterion-plot = "*"
 plotters = "*"
+ta-lib-wrapper = "0.2.0"

@@ -39,7 +39,7 @@ pub fn save(candle_records: Vec<CandleRecord>) -> Result<()> {
 
 pub fn get_candles(secname: String, interval: i32, datestart: String) -> Result<Vec<CandleRecord>, rusqlite::Error> {
     let mut conn = Connection::open("test.db")?;
-    let mut stmt = conn.prepare("SELECT secname, timeframe, open, close, high, low, value, volume, begin, end from candles where secname = ? and timeframe = ? and begin>?")?;
+    let mut stmt = conn.prepare("SELECT secname, timeframe, open, close, high, low, value, volume, begin, end from candles where secname = ? and timeframe = ? and begin>? order by begin")?;
     let candles_iter = stmt.query_map([secname, interval.to_string(), datestart], |row| {
         Ok(CandleRecord {
             secname: row.get(0)?,

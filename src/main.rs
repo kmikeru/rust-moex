@@ -79,18 +79,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     println!("Interval: {}", interval);
     if (action == "d") {
-        let candle_records = download(secname.to_string(), interval, datestart.to_string())?;
-        save(candle_records);
+        for s in secname.split(",") {
+            let candle_records = download(s.to_string(), interval, datestart.to_string())?;
+            println!("Downloaded {} records for ticker {}", candle_records.len(), s);
+            save(candle_records);
+        }
     } else if (action == "s") {
-        let candle_records = get_candles(secname.to_string(), interval, datestart.to_string())?;
-        display_plotters(&candle_records);
+        for s in secname.split(",") {
+            let candle_records = get_candles(s.to_string(), interval, datestart.to_string())?;
+            display_plotters(&candle_records);
+        }
     } else {
         println!("No action specified");
     }
-    //
-    // let candle_records = get_candles(secname.to_string(), interval, datestart.to_string())?;
-    //println!("{:#?}", candle_records);
-    //let _ = create_table();    
-    //display(&candle_records);    
     Ok(())   
 }
